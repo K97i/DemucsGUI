@@ -1,0 +1,27 @@
+name: commit build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup MSBuild 
+        uses: microsoft/setup-msbuild@v1
+        with:
+          msbuild-architecture: x64
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+      - name: Install dependencies
+        run: nuget restore DemucsGUI.sln
+      - name: Build
+        run: msbuild DemucsGUI.sln -property:Configuration=Release
+      - name: Upload build
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: DemucsGUI_commitupdate
+          path: bin\Release\specify_client.exe
