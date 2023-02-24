@@ -45,16 +45,16 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
 
-            <ToggleButton x:Name = "BrowseButton"
+            <Button x:Name = "BrowseButton"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               Content = "Browse"
                               FontSize="12"
                               FontWeight="Medium"
-                              Checked = "BrowseAction">
+                              Click = "BrowseAction">
 
-                <ToggleButton.Style>
-                    <Style TargetType="{x:Type ToggleButton}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
                         <Setter Property="TextElement.FontFamily"
                             Value="Aldo the Apache" />
                         <Setter Property="Cursor"
@@ -68,10 +68,10 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                </ToggleButton.Style>
+                </Button.Style>
 
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border Width="100"
                                 Height="35"
                                 CornerRadius="16"
@@ -80,8 +80,8 @@
                                               HorizontalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </Button.Template>
+            </Button>
 
             <TextBlock TextWrapping="Wrap"
                            Text=""
@@ -131,14 +131,14 @@
         <StackPanel Grid.Row="4" Grid.RowSpan="1"
                     Grid.Column="2" Grid.ColumnSpan="1"
                     HorizontalAlignment="Stretch">
-            <ToggleButton x:Name = "StartButton"
+            <Button x:Name = "StartButton"
                               Content = "Start"
                               FontSize="12"
                               FontWeight="Medium"
-                              Checked = "StartAction">
+                              Click = "StartAction">
 
-                <ToggleButton.Style>
-                    <Style TargetType="{x:Type ToggleButton}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
                         <Setter Property="TextElement.FontFamily"
                             Value="Aldo the Apache" />
                         <Setter Property="Cursor"
@@ -152,10 +152,10 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                </ToggleButton.Style>
+                </Button.Style>
 
-                <ToggleButton.Template>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border Width="100"
                                 Height="35"
                                 CornerRadius="16"
@@ -164,8 +164,8 @@
                                               HorizontalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
-                </ToggleButton.Template>
-            </ToggleButton>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

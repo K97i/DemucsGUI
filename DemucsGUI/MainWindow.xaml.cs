@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
@@ -47,23 +48,50 @@ namespace DemucsGUI
 
             string StemSelect = StemSelectSwitch(TwoStems.Text);
             string QualitySelect = QualitySelectSwitch(OutputQuality.Text);
-
             string tempfilename = string.Concat(" ", '"', Path.GetFileName(filename), '"');
 
-            string command = string.Concat("demucs", StemSelect, QualitySelect, tempfilename);
+            // Final Arguments
+            string command = string.Concat(StemSelect, QualitySelect, tempfilename);
 
-            BrowseText.Text = command;
+            // Run Demucs with arguments from above
+            try
+            {
+                RunDemucs(command);
+            }
+            // catch when Demucs is not installed
+            catch (Win32Exception)
+            {
+                DownloadDemucs();
+                RunDemucs(command);
+            }
+        }
 
-            Process cmd = new Process //Generate the XML report we'll be grabbing the data from
+        private void DownloadDemucs()
+        {
+            Process pip = new Process
             {
                 StartInfo =
-                {
-                    FileName = "cmd.exe",
-                    WorkingDirectory = Path.GetDirectoryName(filename),
-                    Arguments = string.Concat(@"/C ", command),
-                }
+                    {
+                        FileName = "pip",
+                        Arguments = "install demucs",
+                    }
             };
-            cmd.Start();
+            pip.Start();
+            pip.WaitForExit();
+        }
+
+        private void RunDemucs(string command)
+        {
+            Process demucs = new Process
+            {
+                StartInfo =
+                    {
+                        FileName = "demucs",
+                        WorkingDirectory = Path.GetDirectoryName(filename),
+                        Arguments = command,
+                    }
+            };
+            demucs.Start();
         }
 
         public string QualitySelectSwitch(string selection)
