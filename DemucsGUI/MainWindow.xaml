@@ -5,45 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DemucsGUI"
         mc:Ignorable="d"
-        Title="Demucs-GUI" MinHeight="400" MinWidth="800"
+        Title="Demucs-GUI"
+        MinWidth="400" MaxWidth="400"
+        MinHeight="450" MaxHeight="450"
         Background="#232731"
-        SizeToContent="WidthAndHeight">
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="AldoFont" >AldotheApache.ttf#Aldo The Apache</FontFamily>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Grid HorizontalAlignment="Stretch"
-          Height="400"
-          Width="800">
+          VerticalAlignment="Stretch"
+          MaxWidth="400"
+          MaxHeight="450">
+
+        <!-- Grid Def -->
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
             <RowDefinition Height="35*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="75*" />
-            <RowDefinition Height="40*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160*" />
             <ColumnDefinition Width="160*" />
             <ColumnDefinition Width="160*" />
-            <ColumnDefinition Width="160*" />
-            <ColumnDefinition Width="160*" />
         </Grid.ColumnDefinitions>
 
+        <!-- Title -->
         <StackPanel Grid.Row="1" Grid.RowSpan="1"
-                    Grid.Column="1" Grid.ColumnSpan="3"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
             <TextBlock TextWrapping="Wrap"
                            x:Name="TitleText"
-                           Text="Demucs Gui"
-                           FontFamily="Aldo the Apache" Foreground="White"
+                           Text="Demucs GUI"
+                           FontFamily="{DynamicResource AldoFont}"
+                           Foreground="White"
                            HorizontalAlignment = "Center"
                            FontSize="48" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.RowSpan="1"
-                    Grid.Column="0" Grid.ColumnSpan="5"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center">
+
+        <!-- Browse Button -->
+        <StackPanel Grid.Row="2" Grid.RowSpan="2"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
 
             <Button x:Name = "BrowseButton"
                               HorizontalAlignment="Center"
@@ -56,7 +69,7 @@
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="TextElement.FontFamily"
-                            Value="Aldo the Apache" />
+                            Value="{DynamicResource AldoFont}" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
 
@@ -83,23 +96,27 @@
                 </Button.Template>
             </Button>
 
-            <TextBlock TextWrapping="Wrap"
-                           Text=""
-                           FontFamily="Consolas" Foreground="White"
-                           HorizontalAlignment = "Center"
-                           VerticalAlignment = "Center" />
-
             <TextBlock x:Name="BrowseText"
-                            TextWrapping="Wrap"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
                            Text=""
                            FontFamily="Consolas" Foreground="White"
                            HorizontalAlignment = "Center"
                            VerticalAlignment = "Center" />
         </StackPanel>
+
+        <!-- Options -->
         <StackPanel Grid.Row="3" Grid.RowSpan="1"
-                    Grid.Column="2" Grid.ColumnSpan="1"
+                    Grid.Column="1" Grid.ColumnSpan="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
+
+            <TextBlock TextWrapping="Wrap"
+                           Text="Audio Quality"
+                           FontFamily="Consolas" Foreground="White"
+                           HorizontalAlignment = "Center"
+                           VerticalAlignment = "Center" />
+
             <ComboBox x:Name="OutputQuality"
                       Height = "20" Width = "150"
                       HorizontalAlignment = "Center"
@@ -111,7 +128,7 @@
             </ComboBox>
 
             <TextBlock TextWrapping="Wrap"
-                           Text=""
+                           Text="Export Two Stems"
                            FontFamily="Consolas" Foreground="White"
                            HorizontalAlignment = "Center"
                            VerticalAlignment = "Center" />
@@ -128,8 +145,10 @@
                 <ComboBoxItem Content = "Other" />
             </ComboBox>
         </StackPanel>
+
+        <!-- Start Buttons -->
         <StackPanel Grid.Row="4" Grid.RowSpan="1"
-                    Grid.Column="2" Grid.ColumnSpan="1"
+                    Grid.Column="1" Grid.ColumnSpan="1"
                     HorizontalAlignment="Stretch">
             <Button x:Name = "StartButton"
                               Content = "Start"
@@ -140,7 +159,7 @@
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="TextElement.FontFamily"
-                            Value="Aldo the Apache" />
+                            Value="{DynamicResource AldoFont}" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
 

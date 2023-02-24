@@ -23,8 +23,7 @@ namespace DemucsGUI
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
                 // Set filter for file extension and default file extension
-                DefaultExt = ".mp3",
-                Filter = "MP3 Files (*.mp3)|*.mp3|WAV Files (*.wav)|*.wav"
+                Filter = "Typical Media Files (*.mp3, *.wav)|*.mp3;*.wav|All files (*.*)|*.*"
             };
 
             // Display OpenFileDialog by calling ShowDialog method
