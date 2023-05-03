@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Net;
+using Syroot.Windows.IO;
 
 namespace DemucsGUI
 {
@@ -60,8 +62,24 @@ namespace DemucsGUI
             // catch when Demucs is not installed
             catch (Win32Exception)
             {
-                DownloadDemucs();
-                RunDemucs(command);
+                try
+                {
+                    DownloadDemucs();
+                    RunDemucs(command);
+                }
+                catch
+                {
+                    try
+                    {
+                        DownloadPython();
+                        DownloadDemucs();
+                        RunDemucs(command);
+                    }
+                    catch
+                    {
+                        BrowseText.Text = "This program wack! You might need to manually install Demucs.";
+                    }
+                }
             }
         }
 
@@ -77,6 +95,31 @@ namespace DemucsGUI
             };
             pip.Start();
             pip.WaitForExit();
+        }
+
+        private void DownloadPython()
+        {
+            // Downloads Python 3.11.3
+            string DownloadLink = "https://www.python.org/ftp/python/3.11.3/python-3.11.3-amd64.exe";
+
+            // Sets CD to Temp folder
+            Directory.SetCurrentDirectory(Path.GetTempPath());
+
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(DownloadLink, "python-download.exe");
+            }
+
+            Process py = new Process
+            {
+                StartInfo =
+                    {
+                        FileName = "./python-download.exe",
+                        Arguments = "/quiet PrependPath=1",
+                    }
+            };
+            py.Start();
+            py.WaitForExit();
         }
 
         private void RunDemucs(string command)
